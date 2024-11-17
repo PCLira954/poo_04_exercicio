@@ -1,0 +1,56 @@
+class Equipamento {
+    private ligado: boolean
+
+    constructor() {
+        this.ligado = false
+    }
+
+    
+    liga(): void {
+        if (!this.ligado) {
+            this.ligado = true
+            console.log("Equipamento ligado.")
+        } else {
+            console.log("O equipamento já está ligado.")
+        }
+    }
+
+   
+    desliga(): void {
+        if (this.ligado) {
+            this.ligado = false
+            console.log("Equipamento desligado.")
+        } else {
+            console.log("O equipamento já está desligado.")
+        }
+    }
+
+   
+    inverte(): void {
+        this.ligado = !this.ligado
+        console.log(this.ligado ? "Equipamento ligado ao inverter." : "Equipamento desligado ao inverter.")
+    }
+
+    
+    estaLigado(): boolean {
+        return this.ligado
+    }
+}
+
+
+const equipamento = new Equipamento()
+
+
+equipamento.liga()
+equipamento.liga()
+console.log("Está ligado?", equipamento.estaLigado())
+
+equipamento.desliga()
+equipamento.desliga()
+console.log("Está ligado?", equipamento.estaLigado())
+
+equipamento.inverte()
+console.log("Está ligado?", equipamento.estaLigado())
+
+equipamento.inverte()
+console.log("Está ligado?", equipamento.estaLigado())
