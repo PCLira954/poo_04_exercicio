@@ -1,0 +1,23 @@
+class Saudacao{
+    texto : string = ""
+    destinatario : string = ""
+    soma : string = ""
+
+    constructor(texto : string , destinatario : string) {
+        this.texto = texto
+        this.destinatario = destinatario    }
+
+    
+    obterSaudacao(): string{
+
+
+    return this.texto + this.destinatario;
+
+
+    }
+    
+}
+
+let saudar : Saudacao
+    saudar = new Saudacao("Bom dia", " Paulo");
+    console.log(saudar.obterSaudacao())
