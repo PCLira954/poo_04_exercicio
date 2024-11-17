@@ -1,0 +1,75 @@
+class Jogador {
+    forca: number
+    nivel: number
+    pontos: number
+
+    constructor(forca: number, nivel: number, pontos: number) {
+        this.forca = forca
+        this.nivel = nivel
+        this.pontos = pontos
+    }
+
+    
+    calcularAtaque(): number {
+        return this.forca * this.nivel
+    }
+
+    
+    atacar(atacado: Jogador): void {
+        if (!atacado.estaVivo()) {
+            console.log(`${atacado.toString()} já está fora de combate. O ataque foi desconsiderado.`)
+            return
+        }
+
+        const dano = this.calcularAtaque()
+        atacado.pontos -= dano
+        console.log(`${this.toString()} atacou ${atacado.toString()} causando ${dano} de dano.`)
+
+        if (!atacado.estaVivo()) {
+            console.log(`${atacado.toString()} foi derrotado.`)
+        }
+    }
+
+    
+    estaVivo(): boolean {
+        return this.pontos > 0
+    }
+
+    
+    toString(): string {
+        return `Jogador[Força: ${this.forca}, Nível: ${this.nivel}, Pontos: ${this.pontos}]`
+    }
+}
+
+
+const jogador1 = new Jogador(10, 5, 100)
+const jogador2 = new Jogador(8, 6, 120)
+
+console.log("Jogadores antes da batalha:")
+console.log(jogador1.toString())
+console.log(jogador2.toString())
+
+
+jogador1.atacar(jogador2)
+console.log("Jogador 2 após o ataque:", jogador2.toString())
+
+
+jogador2.atacar(jogador1)
+console.log("Jogador 1 após o ataque:", jogador1.toString())
+
+
+jogador1.atacar(jogador2)
+jogador2.atacar(jogador1)
+
+
+console.log("\nJogadores após a batalha:")
+console.log(jogador1.toString())
+console.log(jogador2.toString())
+
+if (jogador1.pontos > jogador2.pontos) {
+    console.log("Jogador 1 venceu a batalha!")
+} else if (jogador2.pontos > jogador1.pontos) {
+    console.log("Jogador 2 venceu a batalha!")
+} else {
+    console.log("A batalha terminou em empate!")
+}
